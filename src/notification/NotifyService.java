@@ -6,10 +6,11 @@ import annotations.Qualifier;
 import service.EmailService;
 import service.MessageService;
 
-@Component
+@Component("emailservice")
+@Qualifier("notifyService")
 public class NotifyService {
     @Autowired
-    @Qualifier("emailService")
+
     private MessageService messageService;
 
 //    public NotifyService(MessageService messageService) {

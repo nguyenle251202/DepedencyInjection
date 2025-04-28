@@ -1,8 +1,6 @@
 package context;
 
-import annotations.Autowired;
-import annotations.Component;
-import annotations.Qualifier;
+import annotations.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -13,6 +11,8 @@ public class ApplicationContext {
     public static final Map<String, Object> beans = new HashMap<>();                 // tạo 1 kho chứa các beans
 
     public void Reflection(Class<?> clazz) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+
+        // Lỗi tại dòng 16 cmn
         if (!clazz.isAnnotationPresent(Component.class)) {                  // Lỗi ngay đây. cmn
             System.err.println("dasdjaksjdjkasd");
             return;

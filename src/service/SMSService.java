@@ -1,10 +1,9 @@
 package service;
 
-import annotations.Autowired;
 import annotations.Component;
 import annotations.Qualifier;
 
-@Component
+@Component("smsservice")
 @Qualifier("smsService")
 public class SMSService implements MessageService {
 

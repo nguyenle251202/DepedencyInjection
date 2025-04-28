@@ -1,10 +1,14 @@
 package service;
 
+import annotations.Autowired;
 import annotations.Component;
+import annotations.Qualifier;
 
-@Component("emailService")
+@Component
+@Qualifier("emailService")
 public class EmailService implements MessageService {
-    @Override
+
+    @Autowired
     public void sendMessage(String message) {
         System.out.println("Email is sent:" + message);
     }

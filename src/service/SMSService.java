@@ -8,7 +8,7 @@ import annotations.Qualifier;
 @Qualifier("smsService")
 public class SMSService implements MessageService {
 
-    @Autowired
+    @Override
     public void sendMessage(String message) {
         System.out.println("SMS is sent: " + message);
     }

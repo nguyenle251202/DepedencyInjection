@@ -1,7 +1,5 @@
 import context.ApplicationContext;
-import notification.NotificationService;
-import service.EmailService;
-import service.SMSService;
+import notification.NotifyService;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -14,7 +12,7 @@ public class Main {
         context.Reflection(Class.forName("service.EmailService"));
         context.Reflection(Class.forName("service.SMSService"));
 
-        NotificationService notificationService = (NotificationService) context.getBean("notify");
-        notificationService.processMessage("Hello World");
+        NotifyService notifyService = (NotifyService) context.getBean("NotifyService");
+        notifyService.processMessage("Hello World");
     }
 }

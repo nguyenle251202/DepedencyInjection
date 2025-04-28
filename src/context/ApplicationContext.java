@@ -10,10 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ApplicationContext {
-    private static final Map<String, Object> beans = new HashMap<>();                 // tạo 1 kho chứa các beans
+    public static final Map<String, Object> beans = new HashMap<>();                 // tạo 1 kho chứa các beans
 
-    public static void Reflection(Class<?> clazz) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        if (!clazz.isAnnotationPresent(Component.class)) {
+    public void Reflection(Class<?> clazz) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        if (!clazz.isAnnotationPresent(Component.class)) {                  // Lỗi ngay đây. cmn
+            System.err.println("dasdjaksjdjkasd");
             return;
         }
         try {
@@ -44,7 +45,7 @@ public class ApplicationContext {
         }
     }
 
-    public static Object getBean(String name) {
+    public Object getBean(String name) {
         return beans.get(name);
     }
 }

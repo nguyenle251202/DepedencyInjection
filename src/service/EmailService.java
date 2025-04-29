@@ -3,8 +3,8 @@ package service;
 import annotations.Component;
 import annotations.Qualifier;
 
-@Component("emailservice")
-@Qualifier("emailService")
+@Component("email-service")
+@Qualifier("emailServiece")
 public class EmailService implements MessageService {
 
     @Override

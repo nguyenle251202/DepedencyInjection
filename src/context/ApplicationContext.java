@@ -12,8 +12,7 @@ public class ApplicationContext {
 
     public void Reflection(Class<?> clazz) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
-        // Lỗi tại dòng 16 cmn
-        if (!clazz.isAnnotationPresent(Component.class)) {                  // Lỗi ngay đây. cmn
+        if (!clazz.isAnnotationPresent(Component.class)) {
             System.err.println("dasdjaksjdjkasd");
             return;
         }
@@ -25,7 +24,11 @@ public class ApplicationContext {
                 nameBean = clazz.getSimpleName();
             }
             beans.put(nameBean, instance);
+            System.out.println(nameBean);
+            // =================================== Đến đây thì đúng rồi
+            // =================================== Vòng lặp đang lỗi
             for (Field field : clazz.getDeclaredFields()) {
+                System.err.println("dependency");
                 if (field.isAnnotationPresent(Autowired.class)) {
                     String nameDependency = field.getType().getSimpleName();
                     if (field.isAnnotationPresent(Qualifier.class)) {
@@ -33,9 +36,8 @@ public class ApplicationContext {
                         nameDependency = qualifier.value();
                     }
                     Object dependency = beans.get(nameDependency);
-                    if (dependency == null) {
-                        System.err.print("Dell co Dependency");
-                    }
+
+                    if (dependency == null) { throw new RuntimeException("Missing dependency for: " + nameDependency); }
                     field.setAccessible(true);
                     field.set(instance, dependency);
                 }
@@ -45,7 +47,7 @@ public class ApplicationContext {
         }
     }
 
-    public Object getBean(String name) {
-        return beans.get(name);
+    public Object getBean(String contr) {
+        return beans.get(contr);
     }
 }

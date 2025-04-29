@@ -3,7 +3,7 @@ package service;
 import annotations.Component;
 import annotations.Qualifier;
 
-@Component("smsservice")
+@Component("sms-service")
 @Qualifier("smsService")
 public class SMSService implements MessageService {
 

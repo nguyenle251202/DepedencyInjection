@@ -6,7 +6,7 @@ import annotations.Qualifier;
 import service.EmailService;
 import service.MessageService;
 
-@Component("emailservice")
+@Component("sms-service")
 @Qualifier("notifyService")
 public class NotifyService {
     @Autowired

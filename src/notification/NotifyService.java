@@ -5,10 +5,10 @@ import annotations.Component;
 import annotations.Qualifier;
 import service.MessageService;
 
-@Component
+@Component("notify")
 public class NotifyService {
     @Autowired
-    @Qualifier("email-service")
+    @Qualifier("SMSService")
     private MessageService messageService;
 
     public void processMessage(String message) {

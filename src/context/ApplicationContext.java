@@ -26,9 +26,8 @@ public class ApplicationContext {
             System.out.println(nameBean);
             // =================================== Đến đây thì đúng rồi
 
-            // =================================== Vòng lặp đang lỗi
+            // ===================================
             for (Field field : clazz.getDeclaredFields()) {
-                System.err.println("CHECK LOI");
                 if (field.isAnnotationPresent(Autowired.class)) {
                     Qualifier qualifier = field.getAnnotation(Qualifier.class);
                     String nameDependency = field.getType().getSimpleName();
@@ -40,8 +39,7 @@ public class ApplicationContext {
                     field.set(instance, dependency);
                 }
             }
-
-            // =================================== Vòng lặp đang lỗi
+            // ===================================
             System.out.println(instance);
         } catch (InstantiationException | IllegalAccessException e) {
             System.err.println("Conmeno, lailoiroi, timlaithoi");

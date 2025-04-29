@@ -15,7 +15,7 @@ public class Main {
         context.Reflection(EmailService.class);
         context.Reflection(SMSService.class);
 
-        NotifyService notifyService = (NotifyService) context.getBean("email-service");
-        notifyService.processMessage("Hello World");
+        NotifyService mess = (NotifyService) context.getBean("NotifyService");
+        mess.processMessage("Hello World");
     }
 }

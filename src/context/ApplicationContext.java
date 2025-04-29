@@ -13,7 +13,6 @@ public class ApplicationContext {
     public void Reflection(Class<?> clazz) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
         if (!clazz.isAnnotationPresent(Component.class)) {
-            System.err.println("dasdjaksjdjkasd");
             return;
         }
         try {
@@ -26,22 +25,24 @@ public class ApplicationContext {
             beans.put(nameBean, instance);
             System.out.println(nameBean);
             // =================================== Đến đây thì đúng rồi
+
             // =================================== Vòng lặp đang lỗi
             for (Field field : clazz.getDeclaredFields()) {
-                System.err.println("dependency");
+                System.err.println("CHECK LOI");
                 if (field.isAnnotationPresent(Autowired.class)) {
+                    Qualifier qualifier = field.getAnnotation(Qualifier.class);
                     String nameDependency = field.getType().getSimpleName();
                     if (field.isAnnotationPresent(Qualifier.class)) {
-                        Qualifier qualifier = field.getAnnotation(Qualifier.class);
                         nameDependency = qualifier.value();
                     }
                     Object dependency = beans.get(nameDependency);
-
-                    if (dependency == null) { throw new RuntimeException("Missing dependency for: " + nameDependency); }
                     field.setAccessible(true);
                     field.set(instance, dependency);
                 }
             }
+
+            // =================================== Vòng lặp đang lỗi
+            System.out.println(instance);
         } catch (InstantiationException | IllegalAccessException e) {
             System.err.println("Conmeno, lailoiroi, timlaithoi");
         }
